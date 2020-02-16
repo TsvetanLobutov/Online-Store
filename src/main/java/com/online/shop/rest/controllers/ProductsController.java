@@ -4,11 +4,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.online.shop.domain.entities.Product;
 import com.online.shop.domain.services.ProductService;
 import com.online.shop.rest.dto.ProductDTO;
 
+@RestController
+@RequestMapping("/products")
 public class ProductsController {
 
 	private final ProductService productService;
@@ -19,16 +29,18 @@ public class ProductsController {
 		this.productService = productService;
 
 	}
-
-	public ProductDTO createProduct(ProductDTO productDTO) {
+	
+	@PostMapping()
+	public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
 
 		Product product = productService.createProduct(productDTO.toProduct());
 
 		return new ProductDTO(product);
 
 	}
-
-	public ProductDTO getProduct(Long id) {
+	
+	@GetMapping("/{id}")
+	public ProductDTO getProduct(@PathVariable Long id) {
 
 		Product product = productService.getProduct(id);
 
@@ -36,23 +48,27 @@ public class ProductsController {
 
 	}
 
-	public ProductDTO updateProduct(ProductDTO productDTO) {
+	@PutMapping("/{id}")
+	public ProductDTO updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO ) {
 
-		Product product = productService.updateProduct(productDTO.toProduct());
+		Product product = productDTO.toEntity(id);
+		product = productService.updateProduct(product);
 
 		return new ProductDTO(product);
 
 	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteProduct(@PathVariable Long id) {
 
-	public void deleteProduct() {
-
-		productService.deleteProduct();
+		productService.deleteProduct(id);
 
 	}
 
+	@GetMapping()
 	public List<ProductDTO> searchProduct() {
 
-		return productService.searchProduct().stream()
+		return productService.searchProducts().stream()
 				.map(ProductDTO::new)
 				.collect(Collectors.toList());
 	}

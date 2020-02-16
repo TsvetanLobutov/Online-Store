@@ -2,7 +2,10 @@ package com.online.shop.domain.services;
 
 import java.util.List;
 
+
+
 import com.online.shop.domain.entities.Product;
+
 
 public interface ProductService {
 
@@ -12,8 +15,8 @@ public interface ProductService {
 
 	public Product updateProduct(Product productDTO);
 
-	public void deleteProduct();
+	public void deleteProduct(Long id);
 
-	public List<Product> searchProduct();
+	public List<Product> searchProducts();
 
 }

@@ -6,14 +6,12 @@ import com.online.shop.domain.entities.Product;
 
 public interface ProductRepository {
 	
-	public Product createProduct(Product product);
+	Product saveProduct(Product product);
 
-	public Product getProduct(Long id);
+	Product getProduct(Long id);
 
-	public Product updateProduct(Product productDTO);
+	void deleteProduct(Long id);
 
-	public void deleteProduct();
-
-	public List<Product> searchProduct();
+	List<Product> searchProducts();
 
 }
