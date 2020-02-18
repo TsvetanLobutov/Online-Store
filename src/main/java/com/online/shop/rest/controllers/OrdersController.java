@@ -51,5 +51,16 @@ public class OrdersController {
  
     }
     
+    @GetMapping("/cancel/{id}")
+    public String cancel(@PathVariable Long id){
+        
+        Order order = orderService.getOrder(id);
+        
+        orderService.cancelOrder(id);
+        
+        //TOBE Checked by for change to redirect to "/order"
+        return "redirect:" + ""; 
+    }
+    
     
 }

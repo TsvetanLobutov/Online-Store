@@ -6,6 +6,7 @@
 package com.online.shop.domain.services.impl;
 
 import com.online.shop.domain.entities.Order;
+import com.online.shop.domain.enums.OrderSatatusEnum;
 import com.online.shop.domain.repositories.OrderRepository;
 import com.online.shop.domain.services.OrderService;
 
@@ -25,8 +26,10 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order createOrder(Order order) {
+        
+        order.setOrderStatus(OrderSatatusEnum.FINISHED.getCode());
       
-        return orderRepository.saveNewOrder(order);
+        return orderRepository.saveOrder(order);
         
     }
 
@@ -34,5 +37,19 @@ public class OrderServiceImpl implements OrderService{
     public Order getOrder(Long id) {
         return orderRepository.getOrder(id);
     }
+
+
+
+    @Override
+    public void cancelOrder(Long id) {
+     
+        Order order = orderRepository.getOrder(id);
+        
+        order.setOrderStatus(OrderSatatusEnum.CANCELED.getCode());
+        orderRepository.saveOrder(order);
+        
+    }
+    
+    
     
 }

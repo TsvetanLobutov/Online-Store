@@ -7,6 +7,8 @@ public interface OrderService {
 	public Order createOrder(Order order);
         
        public Order getOrder(Long id); 
+       
+       public void cancelOrder(Long id);
 	
         
         
