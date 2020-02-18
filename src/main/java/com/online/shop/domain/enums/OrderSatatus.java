@@ -9,16 +9,17 @@ package com.online.shop.domain.enums;
  *
  * @author tlobutov
  */
-public enum OrderSatatusEnum implements CodeEnum{
+public enum OrderSatatus implements CodeEnum{
 
-    NEW(0, "New Order"),
-    FINISHED(1, "Finished"),
-    CANCELED(2, "Canceled");
+    CREATED(0, "New Order"),
+    PAYED(1, "Payed"),
+    FULFILLED(2, "Fulfilled"),
+    CANCELED(3, "Canceled");;
     
     private int code;
     private String message;
 
-    OrderSatatusEnum(Integer code, String message) {
+    OrderSatatus(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

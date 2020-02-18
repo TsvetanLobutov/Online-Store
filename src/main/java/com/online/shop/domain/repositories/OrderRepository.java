@@ -4,7 +4,7 @@ import com.online.shop.domain.entities.Order;
 
 public interface OrderRepository {
 	
-	Order saveOrder(Order order);
+	Order createOrder(Order order);
 	
         Order getOrder(Long id);
         

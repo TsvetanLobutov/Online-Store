@@ -20,7 +20,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	}
 	
 	@Override
-	public Order saveOrder(Order order) {
+	public Order createOrder(Order order) {
 		
 		return orderRepositorySD.save(order); 
 	}

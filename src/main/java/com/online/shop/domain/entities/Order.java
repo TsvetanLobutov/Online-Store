@@ -1,5 +1,6 @@
 package com.online.shop.domain.entities;
 
+import com.online.shop.domain.enums.OrderSatatus;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,13 +23,15 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private List<Product> products;
+	private List<OrderItem> products;
 	
 	private String customerFirstName;
 	
 	private String customerLastName;
 	
 	private BigDecimal totalPrice;
+        
+        private OrderSatatus orderSatus;
         
         @NotNull
         @ColumnDefault("0")
