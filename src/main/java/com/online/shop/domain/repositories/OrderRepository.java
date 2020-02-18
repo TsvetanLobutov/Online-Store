@@ -6,5 +6,6 @@ public interface OrderRepository {
 	
 	Order saveNewOrder(Order order);
 	
+        Order getOrder(Long id);
 
 }

@@ -24,6 +24,8 @@ public class OrderDTO {
 	private String customerLastName;
 	
 	private double totalPrice;
+        
+        private Integer orderStatus;
 	
 	public OrderDTO(Order order) {
 		

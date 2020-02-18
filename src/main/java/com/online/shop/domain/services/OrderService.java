@@ -5,6 +5,8 @@ import com.online.shop.domain.entities.Order;
 public interface OrderService {
 
 	public Order createOrder(Order order);
+        
+       public Order getOrder(Long id); 
 	
         
         

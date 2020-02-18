@@ -29,5 +29,10 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.saveNewOrder(order);
         
     }
+
+    @Override
+    public Order getOrder(Long id) {
+        return orderRepository.getOrder(id);
+    }
     
 }
