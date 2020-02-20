@@ -18,24 +18,24 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 @Table(name = "orders")
 public class Order {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private List<OrderItem> products;
-	
-	private String customerFirstName;
-	
-	private String customerLastName;
-	
-	private BigDecimal totalPrice;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private List<OrderItem> products;
+    
+    private String customerFirstName;
+    
+    private String customerLastName;
+    
+    private BigDecimal totalPrice;
         
         private OrderSatatus orderSatus;
         
         @NotNull
         @ColumnDefault("0")
         private Integer orderStatus;
-	
+    
 
 }
