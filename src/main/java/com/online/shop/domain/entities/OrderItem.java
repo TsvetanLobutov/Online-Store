@@ -19,20 +19,18 @@ import lombok.Data;
  *
  * @author tlobutov
  */
-@Data
-@Entity
-@Table(name = "order_items")
+//@Data
+//@Entity
+//@Table(name = "order_items")
 public class OrderItem {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    //To be checked by !!!
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", nullable = false)
-    private Long productID;
-    
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id", nullable = false)
+//    private Product product;
     
     private Integer quantity;
     

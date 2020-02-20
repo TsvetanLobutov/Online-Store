@@ -44,7 +44,7 @@ public class OrderItemDTO {
         
         OrderItem orderItem = new OrderItem();
         
-        orderItem.setId(id);
+ //       orderItem.setId(id);
         
         return orderItem;
     }

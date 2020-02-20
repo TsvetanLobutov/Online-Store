@@ -1,13 +1,14 @@
 package com.online.shop.persistence.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.online.shop.domain.entities.Order;
 import com.online.shop.domain.exceptions.ResourceNotFoundExeption;
 import com.online.shop.domain.repositories.OrderRepository;
 import com.online.shop.domain.repositories.springdata.OrderRepositorySD;
 
-
+@Repository
 public class OrderRepositoryImpl implements OrderRepository {
 
 	private final OrderRepositorySD orderRepositorySD;

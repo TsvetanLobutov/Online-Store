@@ -5,6 +5,8 @@
  */
 package com.online.shop.domain.services.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.online.shop.domain.entities.Order;
 import com.online.shop.domain.enums.OrderSatatus;
 import com.online.shop.domain.repositories.OrderRepository;
@@ -14,11 +16,12 @@ import com.online.shop.domain.services.OrderService;
  *
  * @author tlobutov
  */
+@Service
 public class OrderServiceImpl implements OrderService{
     
     OrderRepository orderRepository;
     
-    public OrderServiceImpl(){
+    public OrderServiceImpl(OrderRepository orderRepository){
         
         this.orderRepository = orderRepository;
         
