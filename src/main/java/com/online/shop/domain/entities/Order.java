@@ -23,7 +23,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private List<OrderItem> products;
+	private List<Product> products;
 	
 	private String customerFirstName;
 	
