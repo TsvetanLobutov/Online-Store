@@ -5,6 +5,7 @@
  */
 package com.online.shop.rest.dto;
 
+import com.online.shop.domain.entities.Order;
 import com.online.shop.domain.entities.OrderItem;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -20,13 +21,15 @@ public class OrderItemDTO {
 
     private Long id;
 
-    private Long productID;
+    private ProductDTO product;
 
     private Integer quantity;
+    
     
     public OrderItemDTO(OrderItem orderItem){
         
         BeanUtils.copyProperties(orderItem, this);
+        this.product = new ProductDTO(orderItem.getProduct());
         
     }
     
@@ -44,7 +47,7 @@ public class OrderItemDTO {
         
         OrderItem orderItem = new OrderItem();
         
- //       orderItem.setId(id);
+        orderItem.setId(id);
         
         return orderItem;
     }

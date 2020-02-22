@@ -1,6 +1,9 @@
 package com.online.shop.domain.services;
 
+import java.util.List;
+
 import com.online.shop.domain.entities.Order;
+import com.online.shop.domain.entities.Product;
 
 public interface OrderService {
 
@@ -10,6 +13,6 @@ public interface OrderService {
        
        public void cancelOrder(Long id);
 	
-        
+       public List<Order> searchOrders(); 
         
 }

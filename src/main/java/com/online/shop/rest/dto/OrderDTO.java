@@ -1,9 +1,10 @@
 package com.online.shop.rest.dto;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
+
 import com.online.shop.domain.entities.Order;
+import com.online.shop.domain.enums.OrderStatus;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,13 +14,11 @@ public class OrderDTO {
 
     private Long id;
 
-    private List<OrderItemDTO> products;
-
     private String customerFirstName;
 
     private String customerLastName;
 
-    private Integer orderStatus;
+    private OrderStatus orderStatus;
 
     public OrderDTO(Order order) {
 
@@ -37,7 +36,7 @@ public class OrderDTO {
 
     }
 
-    public Order toEntity(Long it) {
+    public Order toEntity(Long id) {
 
         Order order = this.toOrder();
 

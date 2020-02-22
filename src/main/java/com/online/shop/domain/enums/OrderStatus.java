@@ -9,27 +9,12 @@ package com.online.shop.domain.enums;
  *
  * @author tlobutov
  */
-public enum OrderSatatus implements CodeEnum{
+public enum OrderStatus {
 
-    CREATED(0, "New Order"),
-    PAYED(1, "Payed"),
-    FULFILLED(2, "Fulfilled"),
-    CANCELED(3, "Canceled");;
+    CREATED,
+    PAYED,
+    FULFILLED,
+    CANCELED;
     
-    private int code;
-    private String message;
-
-    OrderSatatus(Integer code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-    
-    
-
-    @Override
-    public Integer getCode() {
-        return code;
-    }
-
-    
+   
 }

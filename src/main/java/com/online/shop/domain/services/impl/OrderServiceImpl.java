@@ -5,10 +5,13 @@
  */
 package com.online.shop.domain.services.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.online.shop.domain.entities.Order;
-import com.online.shop.domain.enums.OrderSatatus;
+import com.online.shop.domain.entities.Product;
+import com.online.shop.domain.enums.OrderStatus;
 import com.online.shop.domain.repositories.OrderRepository;
 import com.online.shop.domain.services.OrderService;
 
@@ -30,7 +33,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order createOrder(Order order) {
         
-        order.setOrderStatus(OrderSatatus.CREATED.getCode());
+        order.setOrderStatus(OrderStatus.CREATED);
       
         return orderRepository.createOrder(order);
         
@@ -48,10 +51,17 @@ public class OrderServiceImpl implements OrderService{
      
         Order order = orderRepository.getOrder(id);
         
-        order.setOrderStatus(OrderSatatus.CANCELED.getCode());
+        order.setOrderStatus(OrderStatus.CANCELED);
         orderRepository.createOrder(order);
         
     }
+    
+    @Override
+    public List<Order> searchOrders() {
+
+        return orderRepository.searchOrders();
+
+    };
     
     
     
