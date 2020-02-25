@@ -7,15 +7,15 @@
 
 <link rel="stylesheet" href="styles.css">
 
+
 <script type="text/javascript">
 	$.getJSON("/products", function(data) {
 		$.each(data, function(i, item) {
 			$('<tr>').append(
 					$('<td>').text(item.id), 
 					$('<td>').text(item.title),
-				//	$('<td>').text(item.description), 
 					$('<td>').text(item.price),
-					$('<td>').text('Add to cart'))
+					$("<button>Add to Cart</button>"))
 					.appendTo('#products_table');
 
 		});
@@ -23,13 +23,22 @@
 </script>
 </head>
 
+
 <body>
 	<h2>Winter equipment online store</h2>
+	
+	 	<button class="btn success" onclick="location.href = 'http://localhost:8080/products.html'">Products</button>
+        <button class="btn info" onclick="location.href = 'http://localhost:8080/order.html'">Order</button>
+        <button class="btn warning">Button</button>
+        <button class="btn danger">Button2</button>
+        <button class="btn default">About Us</button>
+	
+	<button type="button" onclick="location.href='http://localhost:8080/cart.html'" style="float: right;">Cart</button>
+	
 	<table id="products_table">
 		<tr>
 			<th>No.</th>
 			<th>Title</th>
-
 			<th>Price</th>
 			<th></th>
 		</tr>

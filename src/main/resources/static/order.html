@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+<META charset="UTF-8">
+<META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<META NAME='rating' CONTENT='General' />
+<META NAME='expires' CONTENT='never' />
+<META NAME='language' CONTENT='English, EN' />
+<META name="description" content="shopping cart project with HTML5 and JavaScript">
+<META name="keywords" content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
+<META name="author" content="dcwebmakers.com">
+<script src="Storage.js"></script>
+<link rel="stylesheet" href="TableStyle.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+
+ 
+ <script type="text/javascript">
+	$.getJSON("/orders", function(data) {
+		$.each(data, function(i, item) {
+			$('<tr>').append(
+					$('<td>').text(item.id), 
+					$('<td>').text(item.customerFirstName),
+					$('<td>').text(item.customerLastName),
+					$('<td>').text(item.totalPrice),
+					$('<td>').text(item.orderStatus))
+					.appendTo('#products_table');
+
+		});
+	});
+</script>
+  
+
+</head>
+<body onload="doShowAll()">
+
+<h2>My Order List</h2>
+
+<button type="button" onclick="location.href='http://localhost:8080/cart.html'" style="float: right;">Cart</button>
+
+	<table id="products_table">
+		<tr>
+			<th>No.</th>
+			<th>Customer First Name</th>
+			<th>Customer Last Name</th>
+			<th>Total Price</th>
+			<th>Order Status</th>
+		</tr>
+	</table>
+        
+
+
+</body>
+</html>
