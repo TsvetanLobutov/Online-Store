@@ -30,7 +30,7 @@ public class Order {
     private Long id;
 
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
     @Column(name = "CUSTOMER_FIRST_NAME")

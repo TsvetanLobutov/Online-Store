@@ -56,7 +56,7 @@ public class OrdersController {
  
     }
     
-    @GetMapping("/cancel/{id}")
+    @PostMapping("{id}/cancel")
     public String cancel(@PathVariable Long id){
         
         Order order = orderService.getOrder(id);

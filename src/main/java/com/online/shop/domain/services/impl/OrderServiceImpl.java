@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.online.shop.domain.entities.Order;
-import com.online.shop.domain.entities.Product;
 import com.online.shop.domain.enums.OrderStatus;
 import com.online.shop.domain.repositories.OrderRepository;
 import com.online.shop.domain.services.OrderService;
@@ -35,7 +34,7 @@ public class OrderServiceImpl implements OrderService{
         
         order.setOrderStatus(OrderStatus.CREATED);
       
-        return orderRepository.createOrder(order);
+        return orderRepository.saveOrder(order);
         
     }
 
@@ -52,7 +51,7 @@ public class OrderServiceImpl implements OrderService{
         Order order = orderRepository.getOrder(id);
         
         order.setOrderStatus(OrderStatus.CANCELED);
-        orderRepository.createOrder(order);
+        orderRepository.saveOrder(order);
         
     }
     
