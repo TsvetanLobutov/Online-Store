@@ -50,7 +50,7 @@ function doShowAll() {
         for (i = 0; i <= localStorage.length - 1; i++) {
             key = localStorage.key(i);
             list += "<tr><td>" + key + "</td>\n<td>"
-                    + localStorage.getItem(key) + "</td></tr>\n";
+                    + JSON.parse(localStorage.getItem(key)).quantity + "</td></tr>\n";
         }
 //if no item exists in the cart
         if (list == "<tr><th>Item</th><th>Quantity</th><th>Price</th></tr>\n") {

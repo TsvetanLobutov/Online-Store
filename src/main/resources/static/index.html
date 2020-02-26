@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <title>Adding a Caption to the HTML Table</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="cartFunction.js"></script>
 
 <link rel="stylesheet" href="styles.css">
 
@@ -11,11 +13,17 @@
 <script type="text/javascript">
 	$.getJSON("/products", function(data) {
 		$.each(data, function(i, item) {
+			
+			var editbtn = document.createElement('button'); 
+			editbtn.type= "button";
+			editbtn.innerHTML = "Add to card";
+			editbtn.onclick = (function(){ return function(){ saveItem(item)}})();
+			
 			$('<tr>').append(
 					$('<td>').text(item.id), 
 					$('<td>').text(item.title),
 					$('<td>').text(item.price),
-					$("<button>Add to Cart</button>"))
+					$('<td>').append(editbtn))
 					.appendTo('#products_table');
 
 		});
@@ -27,8 +35,10 @@
 <body>
 	<h2>Winter equipment online store</h2>
 	
-	 	<button class="btn success" onclick="location.href = 'http://localhost:8080/products.html'">Products</button>
-        <button class="btn info" onclick="location.href = 'http://localhost:8080/order.html'">Order</button>
+		<!-- TODO Make those buttons links-->
+	 	<a class="btn success" onclick="location.href = '/index.html'">Products</a>
+	 	<!-- TODO all need to be like the one bellow-->
+        <a href="/order.html">Order</a>
         <button class="btn warning">Button</button>
         <button class="btn danger">Button2</button>
         <button class="btn default">About Us</button>

@@ -29,15 +29,21 @@
 					$('<td>').text(item.title),
 					$('<td>').text(item.description),
 					$('<td>').text(item.price),
-					$("<button><input type=button value="Add to Cart" onclick="ClearAll()"></button>"))
+					$('<button>ButtonTest</button>').on('click', function(e) { // when you click on a link
+				        var row = $(this).parents('tr').eq(0); // you get the direct parent of the current clicked element
+				        $('order_table').append(row); // you append this parent row in the other table
+				        e.preventDefault(); // your prevent the default link action
+				    }))
 					.appendTo('#products_table');
 
 		});
 	});
 </script>
 
+   
+
 </head>
-<body onload="doShowAll()">
+<body>
 
 <h2>Winter Shop Products</h2>
 
@@ -46,6 +52,16 @@
 
 
 	<table id="products_table">
+		<tr>
+			<th>No.</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+	</table>
+	
+		<table id="order_table">
 		<tr>
 			<th>No.</th>
 			<th>Title</th>
