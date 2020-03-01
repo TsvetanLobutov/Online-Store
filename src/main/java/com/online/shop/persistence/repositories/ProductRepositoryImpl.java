@@ -48,4 +48,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         
     }
 
+    @Override
+    public List<Product> getProducts(List<Long> ids) {             
+        
+        return (List<Product>) productRepositorySD.findAllById(ids);
+    }
+
 }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<META charset="UTF-8">
+<META name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<META NAME='rating' CONTENT='General' />
+<META NAME='expires' CONTENT='never' />
+<META NAME='language' CONTENT='English, EN' />
+<META name="description"
+	content="shopping cart project with HTML5 and JavaScript">
+<META name="keywords"
+	content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
+<META name="author" content="dcwebmakers.com">
+<script src="Storage.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="cartFunction.js"></script>
+
+<script>
+	$(function() {
+		$("#includedContent").load("navigationMenu.html");
+	});
+</script>
+
+<script type="text/javascript">
+	var urlParams = new URLSearchParams(window.location.search);
+
+	console.log(urlParams.get('product-id')); // "edit"
+
+	var id = urlParams.get('product-id'); // "edit"\
+	var item;
+
+	$.getJSON('products/' + id, function(data) {
+		$('#id').text(data.id);
+		$('.title').text(data.title);
+		$('#description').text(data.description);
+		$('#price').text(data.price);
+		item = data;
+	});
+
+	function test() {
+		saveItem(item);
+	}
+</script>
+
+
+</head>
+<body>
+
+	<div id="includedContent"></div>
+
+	<h2 class='title'></h2>
+
+	<table id="products_table">
+		<tr>
+			<td>ID</td>
+			<td><span id='id'></span></td>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td><span class='title'></span></td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td><span id='description'></span></td>
+		</tr>
+		<tr>
+			<td>Price</td>
+			<td><span id='price'></span></td>
+		</tr>
+	</table>
+
+	<div id="items_table">
+
+		<table id=list></table>
+		<p>
+			<label> <input type="button" value="Add to cart"
+				id="myButton" onclick="test()"></input>
+			</label>
+		</p>
+	</div>
+
+</body>
+</html>

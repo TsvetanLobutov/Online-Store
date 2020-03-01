@@ -13,45 +13,51 @@ import com.online.shop.domain.services.ProductService;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	ProductRepository productRepository;
-	
-	@Autowired
-	public ProductServiceImpl(ProductRepository productRepository) {
-	    this.productRepository = productRepository;
-	}
+    ProductRepository productRepository;
 
-	public Product createProduct(Product product) {
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
-		return productRepository.saveProduct(product);
+    public Product createProduct(Product product) {
 
-	};
+        return productRepository.saveProduct(product);
 
-	public Product getProduct(Long id) {
+    };
 
-		return productRepository.getProduct(id);
+    public Product getProduct(Long id) {
 
-	};
+        return productRepository.getProduct(id);
 
-	public Product updateProduct(Product product) {
+    };
 
-		productRepository.getProduct(product.getId());
+    public Product updateProduct(Product product) {
 
-		BeanUtils.copyProperties(this, product);
+        productRepository.getProduct(product.getId());
 
-		return productRepository.saveProduct(product);
+        BeanUtils.copyProperties(this, product);
 
-	};
- 
-	public void deleteProduct(Long id) {
+        return productRepository.saveProduct(product);
 
-		productRepository.deleteProduct(id);
+    };
 
-	};
+    public void deleteProduct(Long id) {
 
-	public List<Product> searchProducts() {
+        productRepository.deleteProduct(id);
 
-		return productRepository.searchProducts();
+    };
 
-	};
+    public List<Product> searchProducts() {
 
+        return productRepository.searchProducts();
+
+    }
+
+    @Override
+    public List<Product> getProducts(List<Long> ids) {
+        
+        return productRepository.getProducts(ids);
+    };   
+    
 }

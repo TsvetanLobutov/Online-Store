@@ -8,8 +8,10 @@ import org.springframework.beans.BeanUtils;
 import com.online.shop.domain.entities.Order;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class OrderDetailsDTO extends OrderDTO {
 
     private List<OrderItemDTO> orderItems;

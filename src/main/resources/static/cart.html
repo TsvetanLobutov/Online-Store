@@ -3,23 +3,36 @@
 <head>
 <title>HTML5 Local Storage Project</title>
 <META charset="UTF-8">
-<META name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <META NAME='rating' CONTENT='General' />
 <META NAME='expires' CONTENT='never' />
 <META NAME='language' CONTENT='English, EN' />
-<META name="description"
-	content="shopping cart project with HTML5 and JavaScript">
-<META name="keywords"
-	content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
+<META name="description" content="shopping cart project with HTML5 and JavaScript">
+<META name="keywords" content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
 <META name="author" content="dcwebmakers.com">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="Storage.js"></script>
 <link rel="stylesheet" href="StorageStyle.css">
+
+
+<script>
+	$(function() {
+		$("#includedContent").load("navigationMenu.html");
+	});
+</script>
+
 </head>
 
 
 <body onload="doShowAll()">
+	
+	<div id="includedContent"></div>
+	
 	<h2>Shopping Cart with HTML5 Storage Project</h2>
+
 	<p>Insert items and quantity for your shopping cart.</p>
 	<form name=ShoppingList>
 
@@ -40,7 +53,7 @@
 			<table id=list></table>
 			<p>
 				<label><input type=button value="Order"
-					onclick="location.href='http://localhost:8383/HTML5Application/order.html'">
+					onclick="location.href='/order.html'">
 				</label> <label><input type=button value="Clear"
 					onclick="ClearAll()"> <i>* Delete all items</i></label>
 			</p>

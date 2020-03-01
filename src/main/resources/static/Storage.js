@@ -44,17 +44,21 @@ function ClearAll() {
 function doShowAll() {
     if (CheckBrowser()) {
         var key = "";
-        var list = "<tr><th>Item</th><th>Quantity</th><th>Price</th></tr>\n";
+        var list = "<tr><th>Item</th><th>Title</th><th>Quantity</th><th>Total Price</th></tr>\n";
+       // var price = "";
         var i = 0;
 //for more advance feature, you can set cap on max items in the cart
         for (i = 0; i <= localStorage.length - 1; i++) {
             key = localStorage.key(i);
-            list += "<tr><td>" + key + "</td>\n<td>"
-                    + JSON.parse(localStorage.getItem(key)).quantity + "</td></tr>\n";
+            list += "<tr><td>" + key 
+           + "</td>\n<td>"  + JSON.parse(localStorage.getItem(key)).title + "</td>\n</td>"
+           + "</td>\n<td>" + JSON.parse(localStorage.getItem(key)).quantity  + "</td>\n</td>"
+            + "</td>\n<td>"  + JSON.parse(localStorage.getItem(key)).price * JSON.parse(localStorage.getItem(key)).quantity  + "</td>\n</td>";
+    	
         }
 //if no item exists in the cart
-        if (list == "<tr><th>Item</th><th>Quantity</th><th>Price</th></tr>\n") {
-            list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+        if (list == "<tr><th>Item</th><th>Quantity</th><th>Price</th><th>Quantity</th></tr>\n") {
+            list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td><th>empty</th></tr>\n";
         }
 //bind the data to html table
 //you can use jQuery too....

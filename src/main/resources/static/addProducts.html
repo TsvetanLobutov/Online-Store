@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Form Submit</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+	function submitform() {
+
+		var formArrays = $("#myForm").serializeArray();
+		
+		function objectifyForm(formArray) {//serialize data function
+
+			var returnArray = {};
+			for (var i = 0; i < formArray.length; i++) {
+				returnArray[formArray[i]['name']] = formArray[i]['value'];
+			}
+			return returnArray;
+		}
+		
+
+		$.ajax({
+			type : "POST",
+			url : "/products",
+			data : JSON.stringify(objectifyForm(formArrays)),
+			success : function() {
+				alert("sucs!!!!!!")
+			},
+			dataType : "json",
+			contentType : "application/json",
+
+		});
+	}
+</script>
+
+<script src="myOrder.js"></script>
+<link rel="stylesheet" href="StorageStyle.css">
+
+<script src="jquery.js"></script>
+<script>
+	$(function() {
+		$("#includedContent").load("navigationMenu.html");
+	});
+</script>
+
+</head>
+<body>
+
+<div id="includedContent"></div>
+
+	<form id="myForm">
+		<label>Title:</label>
+		<input type="text" name="title"><br/>
+		<label>Description:</label>
+		<input type="text" name="description"><br/>
+		<label>Price:</label> 
+		<input type="text" name="price"> 
+		<input value="Submit" type="submit"
+			onclick="submitform()">
+	</form>
+</body>
+</html>

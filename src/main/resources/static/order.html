@@ -1,57 +1,130 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
- 
+<title>HTML5 Local Storage Project</title>
 <META charset="UTF-8">
-<META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<META name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <META NAME='rating' CONTENT='General' />
 <META NAME='expires' CONTENT='never' />
 <META NAME='language' CONTENT='English, EN' />
-<META name="description" content="shopping cart project with HTML5 and JavaScript">
-<META name="keywords" content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
+<META name="description"
+	content="shopping cart project with HTML5 and JavaScript">
+<META name="keywords"
+	content="HTML5,CSS,JavaScript, html5 session storage, html5 local storage">
 <META name="author" content="dcwebmakers.com">
-<script src="Storage.js"></script>
-<link rel="stylesheet" href="TableStyle.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script src="myOrder.js"></script>
+<link rel="stylesheet" href="StorageStyle.css">
 
- 
- <script type="text/javascript">
-	$.getJSON("/orders", function(data) {
-		$.each(data, function(i, item) {
-			$('<tr>').append(
-					$('<td>').text(item.id), 
-					$('<td>').text(item.customerFirstName),
-					$('<td>').text(item.customerLastName),
-					$('<td>').text(item.totalPrice),
-					$('<td>').text(item.orderStatus))
-					.appendTo('#products_table');
 
-		});
+<script>
+	$(function() {
+		$("#includedContent").load("navigationMenu.html");
+
+		var totalPrice = calculateTotalPrice();
+		document.getElementById("total-price").innerText=totalPrice;
 	});
 </script>
-  
+
+<script type="text/javascript">
+	function submitform() {
+
+		var formArrays = $("#customerInfo").serializeArray();
+		
+		function objectifyForm(formArray) {//serialize data function
+
+			var returnArray = {};
+			for (var i = 0; i < formArray.length; i++) {
+				returnArray[formArray[i]['name']] = formArray[i]['value'];
+			}
+			var key ="";
+			var items = [];
+			
+			for (i = 0; i <= localStorage.length - 1; i++) {
+	            key = localStorage.key(i);
+				items[i] = toOrderItem(JSON.parse(localStorage.getItem(key)));
+	        }
+			
+			returnArray.orderItems = items;
+			return returnArray;
+		}
+		
+		function toOrderItem(item) {
+			var orderItem = {};
+			orderItem.product = {};
+			orderItem.product.id = item.id;
+			orderItem.quantity = item.quantity;
+			return orderItem;
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "/orders",
+			data : JSON.stringify(objectifyForm(formArrays)),
+			success : function() {
+				alert("sucs!!!!!!")
+			},
+			dataType : "json",
+			contentType : "application/json",
+
+		});
+	}
+</script>
 
 </head>
+
+
 <body onload="doShowAll()">
 
-<h2>My Order List</h2>
+	<div id="includedContent"></div>
 
-<button type="button" onclick="location.href='http://localhost:8080/cart.html'" style="float: right;">Cart</button>
+	<h2>My Order</h2>
 
-	<table id="products_table">
-		<tr>
-			<th>No.</th>
-			<th>Customer First Name</th>
-			<th>Customer Last Name</th>
-			<th>Total Price</th>
-			<th>Order Status</th>
-		</tr>
-	</table>
-        
+	<form id="customerInfo">
+
+
+
+		<div id="main">
+		
+			<fieldset style="text-align: right; width: 300px">
+				<legend>
+					<b>Order Information Form</b>
+				</legend>
+				<label>First Name:</label>
+				<input type="text" name="customerFirstName"><br/>
+				<label>Last Name:</label>
+				<input type="text" name="customerLastName"><br/>
+				<input value="Process Order" type="submit"
+			onclick="submitform()">
+			</fieldset>
+			
+			
+
+		</div>
+
+
+
+	</form>
+	
+			<div id="items_table">
+			<h3>Shopping List</h3>
+			<table id=list></table>
+			<p>
+				<label><input type=button value="Order"
+					onclick="location.href='http://localhost:8080/order.html'">
+				</label> <label><input type=button value="Clear"
+					onclick="ClearAll()"> <i>* Delete all items</i></label>
+			</p>
+
+			<div align="right">
+				Total price: <span id="total-price"></span>
+			</div>
+
+		</div>
 
 
 </body>
