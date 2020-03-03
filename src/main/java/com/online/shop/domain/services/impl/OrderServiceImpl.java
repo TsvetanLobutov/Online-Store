@@ -29,9 +29,10 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository;
     ProductRepository productRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository) {
 
         this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
 
     }
 
@@ -43,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
         List<Product> products = getOrderProducts(order.getOrderItems());
         BigDecimal totalPrice = calculateTotalPrice(products, order.getOrderItems());
         order.setTotalPrice(totalPrice);
-        
+
         return orderRepository.saveOrder(order);
 
     }
@@ -57,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
 
         }
         return productRepository.getProducts(ids);
+
     }
 
     @Override

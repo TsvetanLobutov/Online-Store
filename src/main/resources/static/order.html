@@ -17,8 +17,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script src="myOrder.js"></script>
-<link rel="stylesheet" href="StorageStyle.css">
+<script src="../js/myOrder.js"></script>
+<link rel="stylesheet" href="../css/StorageStyle.css">
 
 
 <script>
@@ -26,7 +26,7 @@
 		$("#includedContent").load("navigationMenu.html");
 
 		var totalPrice = calculateTotalPrice();
-		document.getElementById("total-price").innerText=totalPrice;
+		document.getElementById("total-price").innerText = totalPrice;
 	});
 </script>
 
@@ -34,25 +34,25 @@
 	function submitform() {
 
 		var formArrays = $("#customerInfo").serializeArray();
-		
+
 		function objectifyForm(formArray) {//serialize data function
 
 			var returnArray = {};
 			for (var i = 0; i < formArray.length; i++) {
 				returnArray[formArray[i]['name']] = formArray[i]['value'];
 			}
-			var key ="";
+			var key = "";
 			var items = [];
-			
+
 			for (i = 0; i <= localStorage.length - 1; i++) {
-	            key = localStorage.key(i);
+				key = localStorage.key(i);
 				items[i] = toOrderItem(JSON.parse(localStorage.getItem(key)));
-	        }
-			
+			}
+
 			returnArray.orderItems = items;
 			return returnArray;
 		}
-		
+
 		function toOrderItem(item) {
 			var orderItem = {};
 			orderItem.product = {};
@@ -86,45 +86,35 @@
 
 	<form id="customerInfo">
 
-
-
 		<div id="main">
-		
+
 			<fieldset style="text-align: right; width: 300px">
 				<legend>
 					<b>Order Information Form</b>
 				</legend>
-				<label>First Name:</label>
-				<input type="text" name="customerFirstName"><br/>
-				<label>Last Name:</label>
-				<input type="text" name="customerLastName"><br/>
-				<input value="Process Order" type="submit"
-			onclick="submitform()">
+				<label>First Name:</label> <input type="text"
+					name="customerFirstName"><br /> <label>Last Name:</label> <input
+					type="text" name="customerLastName"><br /> <input
+					value="Process Order" type="submit" onclick="submitform()">
 			</fieldset>
-			
-			
 
 		</div>
-
-
 
 	</form>
-	
-			<div id="items_table">
-			<h3>Shopping List</h3>
-			<table id=list></table>
-			<p>
-				<label><input type=button value="Order"
-					onclick="location.href='http://localhost:8080/order.html'">
-				</label> <label><input type=button value="Clear"
-					onclick="ClearAll()"> <i>* Delete all items</i></label>
-			</p>
 
-			<div align="right">
-				Total price: <span id="total-price"></span>
-			</div>
+	<div id="items_table">
+		<h3>Shopping List</h3>
+		<table id=list></table>
+		<p>
+			<label><input type=button value="Clear" onclick="ClearAll()">
+				<i>* Delete all items</i></label>
+		</p>
 
+		<div align="right">
+			Total price: <span id="total-price"></span>
 		</div>
+
+	</div>
 
 
 </body>

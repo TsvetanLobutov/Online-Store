@@ -56,8 +56,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProducts(List<Long> ids) {
-        
+
         return productRepository.getProducts(ids);
-    };   
-    
+    };
+
 }

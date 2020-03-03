@@ -3,6 +3,7 @@ package com.online.shop.domain.entities;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,7 +20,6 @@ import com.online.shop.domain.enums.OrderStatus;
 
 import lombok.Data;
 
-
 @Data
 @Entity
 @Table(name = "orders")
@@ -29,8 +29,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
     @Column(name = "CUSTOMER_FIRST_NAME")
@@ -41,7 +40,7 @@ public class Order {
 
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;

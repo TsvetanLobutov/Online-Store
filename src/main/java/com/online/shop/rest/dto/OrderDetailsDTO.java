@@ -1,11 +1,11 @@
 package com.online.shop.rest.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
-
 import com.online.shop.domain.entities.Order;
+import com.online.shop.domain.entities.OrderItem;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,17 +20,23 @@ public class OrderDetailsDTO extends OrderDTO {
 
         super(order);
 
-        this.orderItems = order.getOrderItems()
-                .stream()
-                .map(OrderItemDTO::new)
-                .collect(Collectors.toList());
+        this.orderItems = order.getOrderItems().stream().map(OrderItemDTO::new).collect(Collectors.toList());
     }
 
-    public Order toOrder() {
+    public Order toEntity() {
 
-        Order order = new Order();
+        Order order = super.toEntity();
+        List<OrderItem> orderItems = new ArrayList<>();
 
-        BeanUtils.copyProperties(this, order);
+        for (int i = 0; i < this.orderItems.size(); i++) {
+
+            OrderItem orderItem = this.orderItems.get(i).toEntity();
+            orderItem.setOrder(order);
+            orderItems.add(orderItem);
+
+        }
+
+        order.setOrderItems(orderItems);
 
         return order;
 
@@ -38,7 +44,7 @@ public class OrderDetailsDTO extends OrderDTO {
 
     public Order toEntity(Long id) {
 
-        Order order = this.toOrder();
+        Order order = this.toEntity();
 
         order.setId(id);
 

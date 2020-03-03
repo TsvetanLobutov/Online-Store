@@ -14,35 +14,36 @@ import com.online.shop.domain.repositories.springdata.OrderRepositorySD;
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
 
-	private final OrderRepositorySD orderRepositorySD;
-	
-	@Autowired
-	public OrderRepositoryImpl(OrderRepositorySD orderRepositorySD) {
-		
-		this.orderRepositorySD = orderRepositorySD;
-		
-	}
-	
-	@Override
-	public Order saveOrder(Order order) {
-		
-		return orderRepositorySD.save(order); 
-	}
+    private final OrderRepositorySD orderRepositorySD;
+
+    @Autowired
+    public OrderRepositoryImpl(OrderRepositorySD orderRepositorySD) {
+
+        this.orderRepositorySD = orderRepositorySD;
+
+    }
+
+    @Override
+    public Order saveOrder(Order order) {
+
+        return orderRepositorySD.save(order);
+    }
 
     @Override
     public Order getOrder(Long id) {
-      
-               Order order = orderRepositorySD.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Order with ID: " + id + " does not exist"));
-               order.getOrderItems();
-               
-               return order;
+
+        Order order = orderRepositorySD.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExeption("Order with ID: " + id + " does not exist"));
+        order.getOrderItems();
+
+        return order;
     }
-    
+
     @Override
     public List<Order> searchOrders() {
-        
+
         return orderRepositorySD.findAll();
-        
+
     }
 
 }

@@ -34,52 +34,47 @@ import com.online.shop.rest.dto.OrderDetailsDTO;
 public class OrdersController {
 
     private final OrderService orderService;
-    
-    
+
     @Autowired
-    public OrdersController(OrderService orderService1){
-        
+    public OrdersController(OrderService orderService1) {
+
         this.orderService = orderService1;
-        
+
     }
-    
+
     @PostMapping
-    public OrderDetailsDTO createOrder(@RequestBody OrderDetailsDTO orderDetailsDTO){
-        
-        Order order = orderService.createOrder(orderDetailsDTO.toOrder());
-        
+    public OrderDetailsDTO createOrder(@RequestBody OrderDetailsDTO orderDetailsDTO) {
+
+        Order order = orderService.createOrder(orderDetailsDTO.toEntity());
+
         return new OrderDetailsDTO(order);
-        
+
     }
-    
+
     @GetMapping("/{id}")
-    public OrderDetailsDTO getOrder(@PathVariable Long id){
-        
+    public OrderDetailsDTO getOrder(@PathVariable Long id) {
+
         Order order = orderService.getOrder(id);
-        
+
         return new OrderDetailsDTO(order);
- 
+
     }
-    
+
     @PostMapping("{id}/cancel")
-    public String cancel(@PathVariable Long id){
-        
+    public String cancel(@PathVariable Long id) {
+
         Order order = orderService.getOrder(id);
-        
-        orderService.cancelOrder(id);
-        
-        //TOBE Checked by for change to redirect to "/order"
-        return "redirect:" + ""; 
+
+        orderService.cancelOrder(order.getId());
+
+        return "redirect:" + "";
     }
-    
+
     @GetMapping()
     public List<OrderDTO> searchOrder() {
 
-        List<OrderDTO> orders = orderService.searchOrders().stream()
-                .map(OrderDTO::new)
-                .collect(Collectors.toList());
-         return orders;
+        List<OrderDTO> orders = orderService.searchOrders().stream().map(OrderDTO::new).collect(Collectors.toList());
+        return orders;
     }
-    
-    
+
 }

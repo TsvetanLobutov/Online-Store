@@ -5,11 +5,13 @@
  */
 package com.online.shop.rest.dto;
 
-import com.online.shop.domain.entities.Order;
-import com.online.shop.domain.entities.OrderItem;
-import lombok.NoArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.BeanUtils;
+
+import com.online.shop.domain.entities.OrderItem;
+import com.online.shop.domain.entities.Product;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -24,33 +26,35 @@ public class OrderItemDTO {
     private ProductDTO product;
 
     private Integer quantity;
-    
-    
-    public OrderItemDTO(OrderItem orderItem){
-        
+
+    public OrderItemDTO(OrderItem orderItem) {
+
         BeanUtils.copyProperties(orderItem, this);
         this.product = new ProductDTO(orderItem.getProduct());
-        
+
     }
-    
-    public OrderItem toOrderItem(){
-        
+
+    public OrderItem toEntity() {
+
+        Product product = this.product.toEntity();
+
         OrderItem orderItem = new OrderItem();
-        
+
         BeanUtils.copyProperties(this, orderItem);
-        
+
+        orderItem.setProduct(product);
+
         return orderItem;
-        
+
     }
-    
-    public OrderItem toEntity(Long id){
-        
+
+    public OrderItem toEntity(Long id) {
+
         OrderItem orderItem = new OrderItem();
-        
+
         orderItem.setId(id);
-        
+
         return orderItem;
     }
-    
 
 }

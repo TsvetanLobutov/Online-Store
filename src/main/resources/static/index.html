@@ -5,37 +5,53 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="cartFunction.js"></script>
+<script type="text/javascript" src="../js/cartFunction.js"></script>
 
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../css/styles.css">
 
 
 <script type="text/javascript">
-	$.getJSON("/products", function(data) {
-		$.each(data, function(i, item) {
+	$
+			.getJSON(
+					"/products",
+					function(data) {
+						$
+								.each(
+										data,
+										function(i, item) {
 
-			var editbtn = document.createElement('button');
-			editbtn.type = "button";
-			editbtn.innerHTML = "Add to card";
-			editbtn.onclick = (function() {
-				return function() {
-					saveItem(item)
-				}
-			})();
+											var editbtn = document
+													.createElement('button');
+											editbtn.type = "button";
+											editbtn.innerHTML = "Add to card";
+											editbtn.onclick = (function() {
+												return function() {
+													saveItem(item)
+												}
+											})();
 
-			var productDetailsLink = "<a title=\"Title\" href=\"/productdetails.html?product-id=" + item.id +
-	        "\">" + item.title + "</a>";
-	    
-			
-			$('<tr>').append($('<td>').text(item.id),
-					$('<td>').append(productDetailsLink), 
-					$('<td>').text(item.price),
-					$('<td>').append(editbtn)).appendTo('#products_table');
+											var productDetailsLink = "<a title=\"Title\" href=\"/productdetails.html?product-id="
+													+ item.id
+													+ "\">"
+													+ item.title + "</a>";
 
-		});
-	});
+											$('<tr>')
+													.append(
+															$('<td>').text(
+																	item.id),
+															$('<td>')
+																	.append(
+																			productDetailsLink),
+															$('<td>').text(
+																	item.price),
+															$('<td>').append(
+																	editbtn))
+													.appendTo('#products_table');
+
+										});
+					});
 </script>
 
 
@@ -52,7 +68,7 @@
 
 
 	<div id="includedContent"></div>
-	
+
 	<h2>Winter equipment online store</h2>
 
 

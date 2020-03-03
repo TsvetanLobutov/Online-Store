@@ -26,7 +26,7 @@ public class OrderDTO {
 
     }
 
-    public Order toOrder() {
+    public Order toEntity() {
 
         Order order = new Order();
 
@@ -38,7 +38,7 @@ public class OrderDTO {
 
     public Order toEntity(Long id) {
 
-        Order order = this.toOrder();
+        Order order = this.toEntity();
 
         order.setId(id);
 

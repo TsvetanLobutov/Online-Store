@@ -6,6 +6,6 @@ function saveItem(item) {
 		item = JSON.parse(localStorage.getItem(item.id))
 		item.quantity = item.quantity + 1;
 	}
-	
+
 	localStorage.setItem(item.id, JSON.stringify(item));
 }

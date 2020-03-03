@@ -6,10 +6,6 @@ package com.online.shop.domain.enums;
  */
 public enum OrderStatus {
 
-    CREATED,
-    PAYED,
-    FULFILLED,
-    CANCELED;
-    
-   
+    CREATED, PAYED, FULFILLED, CANCELED;
+
 }
