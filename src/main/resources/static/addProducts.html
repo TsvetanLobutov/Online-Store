@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="../js/myOrder.js"></script>
+<link rel="stylesheet" href="../css/StorageStyle.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+label {
+	display: inline-block;
+	width: 90px;
+	text-align: right;
+}
+</style>
+
+<script type="text/javascript">
+	function submitform() {
+
+		var formArrays = $("#myForm").serializeArray();
+
+		function objectifyForm(formArray) {//serialize data function
+
+			var returnArray = {};
+			for (var i = 0; i < formArray.length; i++) {
+				returnArray[formArray[i]['name']] = formArray[i]['value'];
+			}
+			return returnArray;
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "/products",
+			data : JSON.stringify(objectifyForm(formArrays)),
+			success : function() {
+				alert("sucs!!!!!!")
+			},
+			dataType : "json",
+			contentType : "application/json",
+
+		});
+	}
+</script>
+
+<script>
+	$(function() {
+		$("#includedContent").load("navigationMenu.html");
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="includedContent"></div>
+
+	<form id="myForm">
+		<br /> <label>Title:</label> <input type="text" name="title"><br />
+		<br /> <label>Description:</label> <input type="text"
+			name="description"><br /> <br /> <label>Price:</label> <input
+			type="text" name="price"> <br /> <br /> <input
+			value="Submit" type="submit" onclick="submitform()">
+	</form>
+</body>
+</html>

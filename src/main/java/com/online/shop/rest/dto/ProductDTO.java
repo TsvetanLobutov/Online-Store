@@ -13,40 +13,40 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductDTO {
 
-	private Long id;
+    private Long id;
 
-	private String title;
+    private String title;
 
-	private String description;
+    private String description;
 
-	private double price;
+    private double price;
 
-	public ProductDTO(Product product) {
+    public ProductDTO(Product product) {
 
-		BeanUtils.copyProperties(product, this);
+        BeanUtils.copyProperties(product, this);
 
-		this.price = product.getPrice().doubleValue();
+        this.price = product.getPrice().doubleValue();
 
-	}
+    }
 
-	public Product toProduct() {
+    public Product toEntity() {
 
-		Product product = new Product();
+        Product product = new Product();
 
-		BeanUtils.copyProperties(this, product);
+        BeanUtils.copyProperties(this, product);
 
-		product.setPrice(BigDecimal.valueOf(this.price));
+        product.setPrice(BigDecimal.valueOf(this.price));
 
-		return product;
-	}
+        return product;
+    }
 
-	public Product toEntity(Long id) {
+    public Product toEntity(Long id) {
 
-		Product product = this.toProduct();
+        Product product = this.toEntity();
 
-		product.setId(id);
+        product.setId(id);
 
-		return product;
-	}
+        return product;
+    }
 
 }
